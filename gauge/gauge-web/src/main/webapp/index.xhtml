@@ -15,14 +15,17 @@
 				            <f:selectItems value="#{chartHandler.availableBrands}" />
 				        </p:selectCheckboxMenu>
 			        
-			        	<p:commandButton value="Ok" style="height: 29px;" process="@this" partialSubmit="true" update="dataTable brandChart" actionListener="#{chartHandler.brandFiler()}"/>
+			        	<p:commandButton value="Ok" style="height: 29px;" process="@this" partialSubmit="true" update="dataTable brandChart" actionListener="#{chartHandler.brandFilter()}"/>
 	 				</h:panelGrid>
 	 				
 	 				<p:panel>
 	 					<p:chart id="brandChart" type="bar" model="#{chartHandler.barModel}" style="height:300px;" responsive="true"/>
 	 				</p:panel>
 	 				
-	 				<p:dataTable id="dataTable" style="margin-top:10px;" value="#{chartHandler.retrieveFilteredUserInteractionSet()}" var="user" paginator="true">
+	 				<p:dataTable id="dataTable" style="margin-top:10px;" value="#{chartHandler.retrieveFilteredUserInteractionSet()}" var="user" scrollable="true" scrollRows="10">
+	 					<p:column headerText="Id"  >
+	 						<h:outputText value="#{user.id.toString()}" />
+	 					</p:column>
 	 					<p:column headerText="Picture">
 	 						<h:graphicImage value="#{user.picture.thumbnail}" />
 	 					</p:column>
@@ -36,6 +39,7 @@
 	 					<p:column headerText="Cell" >
 	 						<h:outputText value="#{user.cell}" />
 	 					</p:column>
+	 					
 	 				</p:dataTable>
  				</div>
  			</h:form>

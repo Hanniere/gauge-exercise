@@ -60,6 +60,7 @@ public class ChartHandler implements Serializable {
     	userList = userBusiness.loadUsers();
     	interactionList = interactionBusiness.loadInteractions();
     	brandList = brandBusiness.loadBrands();
+
     	generateNumIteracoesBrand();
     	generateAvailableBrandsCombo();
     	createBarModel();
@@ -72,11 +73,15 @@ public class ChartHandler implements Serializable {
     public void generateNumIteracoesBrand(){
     	filteredBrandList = new ArrayList<Brand>();
     	
+    	
 		for (Brand brand : brandList) {
 			List<Interaction> interactionByBrand = interactionBusiness.retrieveAllInteractionsByBrand(brand.getId(), brandList, interactionList);
 			brand.setNumeroIteracoes(interactionByBrand.size());
 			filteredBrandList.add(brand);
 		}
+		
+		Collections.sort(filteredBrandList, new BrandComparator());
+		Collections.sort(brandList, new BrandComparator());
     }
     
     /**
@@ -109,7 +114,7 @@ public class ChartHandler implements Serializable {
     /**
      * Metodo responsavel por filtrar as marcas selecionadas
      */
-    public void brandFiler(){
+    public void brandFilter(){
     	filteredBrandList.clear();
     	for (String name : selectedBrands) {
     		filteredBrandList.add(brandBusiness.retrieveBrandByName(name, brandList));
