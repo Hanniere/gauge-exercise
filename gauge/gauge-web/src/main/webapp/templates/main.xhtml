@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+	<f:view contentType="text/html" id="fview">
+	
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Gauge Application</title>
+		
+	
+		<h:head>
+			<p:ajaxStatus onstart="statusDialog.show();"
+				onsuccess="statusDialog.hide();" />
+			<h:outputStylesheet library="css" name="app.css" />
+		</h:head>
+	
+	
+		<h:body>
+		<!-- Conteúdo da página -->
+			
+			<h:panelGroup id="template-content" layout="block">
+		
+				<h:panelGroup layout="block">
+					<h:outputText styleClass="template-content-title-text" value="Applicacao Gauge" />
+				</h:panelGroup>
+				<p:separator />
+
+				<p:panel >
+					<ui:insert name="content" />
+				</p:panel>
+						
+			</h:panelGroup>
+
+		</h:body>
+	
+	</f:view>
+
+</html>

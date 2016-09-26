@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+ 
+    <ui:composition template="/templates/main.xhtml">
+        <ui:define name="content">            
+ 			<h:form>
+ 				<div >
+ 					<h:panelGrid columns="2"  style=" margin-bottom:10px;">
+				        <p:selectCheckboxMenu id="menu" value="#{chartHandler.selectedBrands}" label="Select Brand" 
+				                              filter="true" filterMatchMode="startsWith" panelStyle="width:300px" >
+				            <f:selectItems value="#{chartHandler.availableBrands}" />
+				        </p:selectCheckboxMenu>
+			        
+			        	<p:commandButton value="Ok" style="height: 29px;" process="@this" partialSubmit="true" update="dataTable brandChart" actionListener="#{chartHandler.brandFiler()}"/>
+	 				</h:panelGrid>
+	 				
+	 				<p:panel>
+	 					<p:chart id="brandChart" type="bar" model="#{chartHandler.barModel}" style="height:300px;" responsive="true"/>
+	 				</p:panel>
+	 				
+	 				<p:dataTable id="dataTable" style="margin-top:10px;" value="#{chartHandler.retrieveFilteredUserInteractionSet()}" var="user" paginator="true">
+	 					<p:column headerText="Picture">
+	 						<h:graphicImage value="#{user.picture.thumbnail}" />
+	 					</p:column>
+	 					<p:column headerText="Name">
+	 						<h:outputText value="#{user.name.first}" />
+	 					</p:column>
+	 					
+	 					 <p:column headerText="Gender" >
+	 						<h:outputText value="#{user.gender}" />
+	 					</p:column>
+	 					<p:column headerText="Cell" >
+	 						<h:outputText value="#{user.cell}" />
+	 					</p:column>
+	 				</p:dataTable>
+ 				</div>
+ 			</h:form>
+        </ui:define>
+    </ui:composition>        
+ 
+</html>

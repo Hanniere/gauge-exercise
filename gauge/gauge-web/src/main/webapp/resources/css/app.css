@@ -1,0 +1,26 @@
+body {
+	padding-bottom: 30px;
+	text-align: left;
+	background: #EEEEEE;
+}
+
+/** CSS responsável pelo layout do cabeçalho do sistema*/
+
+#template-content {
+	position: relative;
+	width: 1000px;
+	margin: 0px auto;
+	text-align: center;
+	overflow: visible;
+	height: auto;
+	background-color: #EEEEEE;
+	padding-bottom: 10px;
+	min-height: 100%;
+}
+
+.template-content-title-text {
+	font-size: 30px;
+	color: #000;
+	font-weight: bold;
+	vertical-align: middle;
+}
